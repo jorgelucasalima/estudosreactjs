@@ -10,9 +10,11 @@ function App() {
         'Fazer nada'
     ])
 
+    const [input, setInput] = useState('')
 
     function add() {
-        setTarefas([...tarefas, 'Aprender js'])
+        setTarefas([...tarefas, input])
+        setInput('')
     }
 
     return(
@@ -25,6 +27,7 @@ function App() {
                 ))}
             </ul>
             
+            <input type="text" value={input} onChange={e => setInput(e.target.value)} />
             <button type="button" onClick={add}>Adicionar</button>
         </div>
     )
