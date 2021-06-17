@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react'
+import './style.css'
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [tarefas, setTarefas] = useState([
+        'pagar a conta de luz',
+        'roubar um banco',
+        'Fazer nada'
+    ])
+
+
+    function add() {
+        setTarefas([...tarefas, 'Aprender js'])
+    }
+
+    return(
+        <div className="usestate">
+            <h1>Hooks</h1>
+            <h2>useState</h2>
+            <ul>
+                {tarefas.map(tarefa => (
+                    <li key={tarefa}>{tarefa}</li>
+                ))}
+            </ul>
+            
+            <button type="button" onClick={add}>Adicionar</button>
+        </div>
+    )
 }
 
-export default App;
+export default App
+
