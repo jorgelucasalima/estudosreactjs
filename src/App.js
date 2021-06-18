@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useMemo} from 'react'
+import React, {useState, useEffect, useMemo, useCallback} from 'react'
 import './style.css'
 
 //estudando useState e useEffect
@@ -25,14 +25,15 @@ function App() {
         localStorage.setItem('tarefas', JSON.stringify(tarefas))
     }, [tarefas])
 
-
-
-    function add() {
+    
+    //adiciona as tarefas no input
+    // utilizando o useCallback
+    const add = useCallback(() => {
         setTarefas([...tarefas, input])
         setInput('')
-    }
+    }, [input, tarefas])
 
-//useMemo
+    //useMemo
     const totalTarefas = useMemo(() => tarefas.length, [tarefas])
 
     return(
