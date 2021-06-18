@@ -1,16 +1,33 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import './style.css'
 
+//estudando useState e useEffect
 
 function App() {
 
-    const [tarefas, setTarefas] = useState([
-        'pagar a conta de luz',
-        'roubar um banco',
-        'Fazer nada'
-    ])
+    const [tarefas, setTarefas] = useState([])
 
     const [input, setInput] = useState('')
+
+
+    //useEffect
+
+    useEffect(()=>{
+        const tarefasStorage = localStorage.getItem('tarefas')
+
+        if (tarefasStorage) {
+            setTarefas(JSON.parse(tarefasStorage))
+        }
+    }, [])
+
+
+    useEffect(()=>{
+        localStorage.setItem('tarefas', JSON.stringify(tarefas))
+    }, [tarefas])
+
+
+
+
 
     function add() {
         setTarefas([...tarefas, input])
