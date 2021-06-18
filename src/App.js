@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useMemo} from 'react'
 import './style.css'
 
 //estudando useState e useEffect
@@ -27,12 +27,13 @@ function App() {
 
 
 
-
-
     function add() {
         setTarefas([...tarefas, input])
         setInput('')
     }
+
+//useMemo
+    const totalTarefas = useMemo(() => tarefas.length, [tarefas])
 
     return(
         <div className="usestate">
@@ -43,7 +44,8 @@ function App() {
                     <li key={tarefa}>{tarefa}</li>
                 ))}
             </ul>
-            
+            <br/>
+            <strong>Você tem {totalTarefas} tarefas</strong>
             <input type="text" value={input} onChange={e => setInput(e.target.value)} />
             <button type="button" onClick={add}>Adicionar</button>
         </div>
